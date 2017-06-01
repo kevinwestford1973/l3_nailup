@@ -1,0 +1,2 @@
+ docker run -it -v /dev:/dev -v /nailedup:/nailedup --ipc=host -it -h container_cdman --rm --name cdman $1   /bin/bash
+

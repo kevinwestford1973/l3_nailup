@@ -1,0 +1,103 @@
+
+/*******************/
+
+
+On TFTP Agent:
+
+
+ifconfig veth_tftp 10.10.6.2 netmask 255.255.0.0 up
+
+
+ifconfig lo:1 9.41.32.4 netmask 255.255.0.0 up
+
+
+route del -host 1.2.24.102 gw 9.41.32.1
+
+
+route del -net 8.41.0.0 netmask 255.255.0.0 gw 9.41.32.1
+
+
+route add -net 8.41.0.0 netmask 255.255.0.0 gw 10.10.4.1
+
+route add -net 1.2.0.0 netmask 255.255.0.0 gw 10.10.4.1
+
+
+
+
+On vSwitch:
+
+
+
+set int ip address del loop2 9.41.32.1/24 
+
+
+set int ip address loop2 10.10.4.1/16  
+
+
+
+on VNF
+
+
+
+set int ip address host-veth_l2l3pi 10.10.4.2/16
+
+
+exec /opt/dev/usmac_data_tftp_pcap
+
+
+set int state pg0 up
+
+set int mac addr pg0 00:0C:29:10:8E:E3
+
+usmac disp pg0 enable
+
+usmac flow set sg 0 md 0 ucid 0 sid 1 flowId 6 flw_type 2 pri 0 pre-reg 1
+
+usmac vmac ip da set 10.40.88.2
+
+loop create
+
+set int state loop0 up
+
+set int ip address loop0 1.0.0.1/24
+
+set int ip address pg0  2.0.0.1/24
+
+set dhcp proxy server  1.0.0.1 src-address 2.0.0.1
+
+cdhcp addrswap pg0
+
+prereg uspkt pg0
+
+cbll2inject enable host-veth_l2l3pi 
+
+
+icpi inject enable-disable host-veth_l2l3pi 
+
+icpi inject add 4 node cbl-l2-inject
+
+icpi inject add 5 node cbl-l2-inject
+
+
+icpi punt del 2 0
+
+icpi punt del 6 0
+
+icpi punt del 7 0
+
+icpi punt del 8 0
+
+
+
+icpi punt add 2 0 host-veth_l2l3pi mac 02:22:33:00:03:04 ip 10.10.6.2
+
+icpi punt add 6 0 host-veth_l2l3pi mac 02:22:33:00:03:04 ip 10.10.6.2
+
+icpi punt add 7 0 host-veth_l2l3pi mac 02:22:33:00:03:04 ip 10.10.6.2
+
+icpi punt add 8 0 host-veth_l2l3pi mac 02:22:33:00:03:04 ip 10.10.6.2
+
+
+trace add pg-input 100
+
+trace add af-packet-input 100

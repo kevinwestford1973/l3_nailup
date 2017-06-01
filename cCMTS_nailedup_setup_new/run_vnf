@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+source functions.sh
+source nailedup.conf
+
+docker rm $(docker ps -q -f status=exited)
+docker rm $(docker ps -q -f status=exited)
+docker run -it -v /root/vpp_scr:/opt/dev/vpp_scr --name vnf-vpp --privileged $1 
+#docker run -it --name vnf-vpp $1 

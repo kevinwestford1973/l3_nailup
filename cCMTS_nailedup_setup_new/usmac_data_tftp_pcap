@@ -1,0 +1,9 @@
+packet-generator new {
+  name tftp-rrq
+  limit 1
+  node ethernet-input
+  no-recycle
+  pcap /opt/dev/usmac_data_tftp.pcap 
+}
+
+tr add pg-input 100

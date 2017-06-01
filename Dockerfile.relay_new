@@ -1,0 +1,11 @@
+#FROM dockerhub.cisco.com/vnf-docker-dev/ccm
+
+FROM containers.cisco.com/cabu/ccmts_alpine_base:0.0.0
+
+#FROM containers.cisco.com/cabu/cabu-cloud-cmts
+
+
+COPY cmts-l3-services/dhcp/relay/dhcrelay  .
+
+ENTRYPOINT  ["./dhcrelay"]
+

@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+source functions.sh
+source nailedup.conf
+pci=$(./find_pci_bus.sh $RPHY_IF)
+
+printf "PCI bus number for  $RPHY_IF is  $pci"
+#sudo modprobe vfio-pci
+docker rm $(docker ps -q -f status=exited)
+#docker run -it -v /dev/:/dev -e VPP_PCI_DEV='0000:13:00.0' --privileged --name vpp vpp 
+docker run -it -v /dev/:/dev  -e VPP_PCI_DEV=$pci --privileged --name vpp $1 
+

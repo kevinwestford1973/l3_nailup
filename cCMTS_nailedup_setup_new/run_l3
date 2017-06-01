@@ -1,0 +1,2 @@
+ docker run -it -v /dev:/dev -v /nailedup:/nailedup --ipc=host -it -h container_l3 --rm --name cable-l3 $1   /bin/bash
+

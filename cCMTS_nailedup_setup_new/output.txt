@@ -1,0 +1,238 @@
++ USAGE=setup_containers.sh
++ echo 'number of args given 0'
+number of args given 0
++ cleanup=0
++ '[' '!' -z '' ']'
++ echo 'cleanup is 0'
+cleanup is 0
++ source functions.sh
++ VPP_VSWITCH_APP_NAME=vswitch-vpp
++ RANGING_APP_NAME=cmts-rt-ranging
++ DP_CONT_APP_NAME=cmts-dp-macl3vpp
++ US_SCHED_APP_NAME=cmts-rt-usscheduler
++ DHCP_RELAY_APP_NAME=cmts-dp-dhcprelay
++ echo 'wait_for_k8s_container_running vswitch-vpp'
+wait_for_k8s_container_running vswitch-vpp
++ wait_for_k8s_container_running vswitch-vpp
++ k8s_label_name=vswitch-vpp
+++ kubectl get po --selector=app=vswitch-vpp --output 'jsonpath={.items[0].spec.containers[0].image}'
++ image_name=devhub-docker.cisco.com/vnf-docker-dev/tric_vpp:17.07-rc0.121.be32df2b
++ echo 'image name devhub-docker.cisco.com/vnf-docker-dev/tric_vpp:17.07-rc0.121.be32df2b'
+image name devhub-docker.cisco.com/vnf-docker-dev/tric_vpp:17.07-rc0.121.be32df2b
+++ docker ps --filter ancestor=devhub-docker.cisco.com/vnf-docker-dev/tric_vpp:17.07-rc0.121.be32df2b --format '{{.ID}}'
++ c_id=c108f384dc9e
++ echo 'container id c108f384dc9e'
+container id c108f384dc9e
+++ check_container_running c108f384dc9e
+++ local CONTAINER=c108f384dc9e
++++ docker inspect '--format={{ .State.Running }}' c108f384dc9e
+++ RUNNING=true
+++ '[' 0 -eq 1 ']'
+++ '[' true == false ']'
+++ return 0
++ status=0
++ '[' 0 -ne 0 ']'
++ echo 'check_container_status : c108f384dc9e running'
+check_container_status : c108f384dc9e running
++ echo 'wait_for_k8s_container_running cmts-rt-ranging'
+wait_for_k8s_container_running cmts-rt-ranging
++ wait_for_k8s_container_running cmts-rt-ranging
++ k8s_label_name=cmts-rt-ranging
+++ kubectl get po --selector=app=cmts-rt-ranging --output 'jsonpath={.items[0].spec.containers[0].image}'
++ image_name=devhub-docker.cisco.com/cabu-cloud-cmts-dev-docker/cmts_rt_ranging:0.1.0.60.f18403de
++ echo 'image name devhub-docker.cisco.com/cabu-cloud-cmts-dev-docker/cmts_rt_ranging:0.1.0.60.f18403de'
+image name devhub-docker.cisco.com/cabu-cloud-cmts-dev-docker/cmts_rt_ranging:0.1.0.60.f18403de
+++ docker ps --filter ancestor=devhub-docker.cisco.com/cabu-cloud-cmts-dev-docker/cmts_rt_ranging:0.1.0.60.f18403de --format '{{.ID}}'
++ c_id=50d929ebf1c4
++ echo 'container id 50d929ebf1c4'
+container id 50d929ebf1c4
+++ check_container_running 50d929ebf1c4
+++ local CONTAINER=50d929ebf1c4
++++ docker inspect '--format={{ .State.Running }}' 50d929ebf1c4
+++ RUNNING=true
+++ '[' 0 -eq 1 ']'
+++ '[' true == false ']'
+++ return 0
++ status=0
++ '[' 0 -ne 0 ']'
++ echo 'check_container_status : 50d929ebf1c4 running'
+check_container_status : 50d929ebf1c4 running
++ echo 'wait_for_k8s_container_running cmts-dp-macl3vpp'
+wait_for_k8s_container_running cmts-dp-macl3vpp
++ wait_for_k8s_container_running cmts-dp-macl3vpp
++ k8s_label_name=cmts-dp-macl3vpp
+++ kubectl get po --selector=app=cmts-dp-macl3vpp --output 'jsonpath={.items[0].spec.containers[0].image}'
++ image_name=devhub-docker.cisco.com/cabu-cloud-cmts-dev-docker/cmts_dp_macl3vpp:0.1.0.20.df90da8c
++ echo 'image name devhub-docker.cisco.com/cabu-cloud-cmts-dev-docker/cmts_dp_macl3vpp:0.1.0.20.df90da8c'
+image name devhub-docker.cisco.com/cabu-cloud-cmts-dev-docker/cmts_dp_macl3vpp:0.1.0.20.df90da8c
+++ docker ps --filter ancestor=devhub-docker.cisco.com/cabu-cloud-cmts-dev-docker/cmts_dp_macl3vpp:0.1.0.20.df90da8c --format '{{.ID}}'
++ c_id=0ac21ecd6786
++ echo 'container id 0ac21ecd6786'
+container id 0ac21ecd6786
+++ check_container_running 0ac21ecd6786
+++ local CONTAINER=0ac21ecd6786
++++ docker inspect '--format={{ .State.Running }}' 0ac21ecd6786
+++ RUNNING=true
+++ '[' 0 -eq 1 ']'
+++ '[' true == false ']'
+++ return 0
++ status=0
++ '[' 0 -ne 0 ']'
++ echo 'check_container_status : 0ac21ecd6786 running'
+check_container_status : 0ac21ecd6786 running
++ echo 'wait_for_k8s_container_running cmts-rt-usscheduler'
+wait_for_k8s_container_running cmts-rt-usscheduler
++ wait_for_k8s_container_running cmts-rt-usscheduler
++ k8s_label_name=cmts-rt-usscheduler
+++ kubectl get po --selector=app=cmts-rt-usscheduler --output 'jsonpath={.items[0].spec.containers[0].image}'
+No resources found.
+error: error executing jsonpath "{.items[0].spec.containers[0].image}": array index out of bounds: index 0, length 0
++ image_name='Error executing template: array index out of bounds: index 0, length 0. Printing more information for debugging the template:
+	template was:
+		{.items[0].spec.containers[0].image}
+	object given to jsonpath engine was:
+		map[string]interface {}{"selfLink":"", "apiVersion":"v1", "items":[]interface {}{}, "kind":"List", "metadata":map[string]interface {}{}, "resourceVersion":""}'
++ echo 'image name Error executing template: array index out of bounds: index 0, length 0. Printing more information for debugging the template:
+	template was:
+		{.items[0].spec.containers[0].image}
+	object given to jsonpath engine was:
+		map[string]interface {}{"selfLink":"", "apiVersion":"v1", "items":[]interface {}{}, "kind":"List", "metadata":map[string]interface {}{}, "resourceVersion":""}'
+image name Error executing template: array index out of bounds: index 0, length 0. Printing more information for debugging the template:
+	template was:
+		{.items[0].spec.containers[0].image}
+	object given to jsonpath engine was:
+		map[string]interface {}{"selfLink":"", "apiVersion":"v1", "items":[]interface {}{}, "kind":"List", "metadata":map[string]interface {}{}, "resourceVersion":""}
+++ docker ps --filter 'ancestor=Error executing template: array index out of bounds: index 0, length 0. Printing more information for debugging the template:
+	template was:
+		{.items[0].spec.containers[0].image}
+	object given to jsonpath engine was:
+		map[string]interface {}{"selfLink":"", "apiVersion":"v1", "items":[]interface {}{}, "kind":"List", "metadata":map[string]interface {}{}, "resourceVersion":""}' --format '{{.ID}}'
+bad format of filter (expected name=value)
++ c_id=
++ echo 'container id '
+container id 
+++ check_container_running
+++ local CONTAINER=
++++ docker inspect '--format={{ .State.Running }}'
+/usr/bin/docker-current: "inspect" requires a minimum of 1 argument.
+See '/usr/bin/docker-current inspect --help'.
+
+Usage:	docker inspect [OPTIONS] CONTAINER|IMAGE|TASK [CONTAINER|IMAGE|TASK...]
+
+Return low-level information on a container, image or task
+++ RUNNING=
+++ '[' 1 -eq 1 ']'
+++ echo 'UNKNOWN -  does not exist.'
+++ return 3
++ UNKNOWN - does not exist.
+functions.sh: line 23: UNKNOWN: command not found
++ status=127
++ '[' 127 -ne 0 ']'
++ echo 'check_container_status :  not running'
+check_container_status :  not running
++ sleep 2
+++ kubectl get po --selector=app=cmts-rt-usscheduler --output 'jsonpath={.items[0].spec.containers[0].image}'
+No resources found.
+error: error executing jsonpath "{.items[0].spec.containers[0].image}": array index out of bounds: index 0, length 0
++ image_name='Error executing template: array index out of bounds: index 0, length 0. Printing more information for debugging the template:
+	template was:
+		{.items[0].spec.containers[0].image}
+	object given to jsonpath engine was:
+		map[string]interface {}{"apiVersion":"v1", "items":[]interface {}{}, "kind":"List", "metadata":map[string]interface {}{}, "resourceVersion":"", "selfLink":""}'
+++ docker ps --filter 'ancestor=Error executing template: array index out of bounds: index 0, length 0. Printing more information for debugging the template:
+	template was:
+		{.items[0].spec.containers[0].image}
+	object given to jsonpath engine was:
+		map[string]interface {}{"apiVersion":"v1", "items":[]interface {}{}, "kind":"List", "metadata":map[string]interface {}{}, "resourceVersion":"", "selfLink":""}' --format '{{.ID}}'
+bad format of filter (expected name=value)
++ c_id=
+++ check_container_running
+++ local CONTAINER=
++++ docker inspect '--format={{ .State.Running }}'
+/usr/bin/docker-current: "inspect" requires a minimum of 1 argument.
+See '/usr/bin/docker-current inspect --help'.
+
+Usage:	docker inspect [OPTIONS] CONTAINER|IMAGE|TASK [CONTAINER|IMAGE|TASK...]
+
+Return low-level information on a container, image or task
+++ RUNNING=
+++ '[' 1 -eq 1 ']'
+++ echo 'UNKNOWN -  does not exist.'
+++ return 3
++ UNKNOWN - does not exist.
+functions.sh: line 32: UNKNOWN: command not found
++ status=127
++ '[' 127 -ne 0 ']'
++ echo 'check_container_status :  not running'
+check_container_status :  not running
++ sleep 2
+++ kubectl get po --selector=app=cmts-rt-usscheduler --output 'jsonpath={.items[0].spec.containers[0].image}'
+No resources found.
+error: error executing jsonpath "{.items[0].spec.containers[0].image}": array index out of bounds: index 0, length 0
++ image_name='Error executing template: array index out of bounds: index 0, length 0. Printing more information for debugging the template:
+	template was:
+		{.items[0].spec.containers[0].image}
+	object given to jsonpath engine was:
+		map[string]interface {}{"apiVersion":"v1", "items":[]interface {}{}, "kind":"List", "metadata":map[string]interface {}{}, "resourceVersion":"", "selfLink":""}'
+++ docker ps --filter 'ancestor=Error executing template: array index out of bounds: index 0, length 0. Printing more information for debugging the template:
+	template was:
+		{.items[0].spec.containers[0].image}
+	object given to jsonpath engine was:
+		map[string]interface {}{"apiVersion":"v1", "items":[]interface {}{}, "kind":"List", "metadata":map[string]interface {}{}, "resourceVersion":"", "selfLink":""}' --format '{{.ID}}'
+bad format of filter (expected name=value)
++ c_id=
+++ check_container_running
+++ local CONTAINER=
++++ docker inspect '--format={{ .State.Running }}'
+/usr/bin/docker-current: "inspect" requires a minimum of 1 argument.
+See '/usr/bin/docker-current inspect --help'.
+
+Usage:	docker inspect [OPTIONS] CONTAINER|IMAGE|TASK [CONTAINER|IMAGE|TASK...]
+
+Return low-level information on a container, image or task
+++ RUNNING=
+++ '[' 1 -eq 1 ']'
+++ echo 'UNKNOWN -  does not exist.'
+++ return 3
++ UNKNOWN - does not exist.
+functions.sh: line 32: UNKNOWN: command not found
++ status=127
++ '[' 127 -ne 0 ']'
++ echo 'check_container_status :  not running'
+check_container_status :  not running
++ sleep 2
+++ kubectl get po --selector=app=cmts-rt-usscheduler --output 'jsonpath={.items[0].spec.containers[0].image}'
+No resources found.
+error: error executing jsonpath "{.items[0].spec.containers[0].image}": array index out of bounds: index 0, length 0
++ image_name='Error executing template: array index out of bounds: index 0, length 0. Printing more information for debugging the template:
+	template was:
+		{.items[0].spec.containers[0].image}
+	object given to jsonpath engine was:
+		map[string]interface {}{"apiVersion":"v1", "items":[]interface {}{}, "kind":"List", "metadata":map[string]interface {}{}, "resourceVersion":"", "selfLink":""}'
+++ docker ps --filter 'ancestor=Error executing template: array index out of bounds: index 0, length 0. Printing more information for debugging the template:
+	template was:
+		{.items[0].spec.containers[0].image}
+	object given to jsonpath engine was:
+		map[string]interface {}{"apiVersion":"v1", "items":[]interface {}{}, "kind":"List", "metadata":map[string]interface {}{}, "resourceVersion":"", "selfLink":""}' --format '{{.ID}}'
+bad format of filter (expected name=value)
++ c_id=
+++ check_container_running
+++ local CONTAINER=
++++ docker inspect '--format={{ .State.Running }}'
+/usr/bin/docker-current: "inspect" requires a minimum of 1 argument.
+See '/usr/bin/docker-current inspect --help'.
+
+Usage:	docker inspect [OPTIONS] CONTAINER|IMAGE|TASK [CONTAINER|IMAGE|TASK...]
+
+Return low-level information on a container, image or task
+++ RUNNING=
+++ '[' 1 -eq 1 ']'
+++ echo 'UNKNOWN -  does not exist.'
+++ return 3
++ UNKNOWN - does not exist.
+functions.sh: line 32: UNKNOWN: command not found
++ status=127
++ '[' 127 -ne 0 ']'
++ echo 'check_container_status :  not running'
+check_container_status :  not running
++ sleep 2
